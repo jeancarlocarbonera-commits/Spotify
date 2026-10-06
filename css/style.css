@@ -1,0 +1,300 @@
+@import url('common.css');
+
+.spotify-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: var(--goth-black-void);
+  border-bottom: 1px solid var(--goth-border);
+  gap: 16px;
+}
+
+.brand .logo-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--goth-blood-bright);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  max-width: 480px;
+}
+
+.nav-btn {
+  background: var(--goth-dark-gray);
+  border: 1px solid var(--goth-border);
+  color: var(--goth-silver-light);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--goth-dark-gray);
+  border: 1px solid var(--goth-border);
+  padding: 8px 14px;
+  border-radius: var(--border-radius-pill);
+  flex: 1;
+  gap: 8px;
+}
+
+.search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  width: 100%;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  background: var(--goth-card-gray);
+  color: var(--goth-pure-white);
+  border: 1px solid var(--goth-border);
+  padding: 8px 14px;
+  border-radius: var(--border-radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.profile-avatar {
+  background: var(--goth-card-gray);
+  border: 1px solid var(--goth-border);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MAIN CONTAINER */
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 8px;
+  gap: 8px;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--goth-dark-gray);
+  border: 1px solid var(--goth-border);
+  border-radius: var(--border-radius-main);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--goth-silver-light);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.library-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.content-area {
+  flex: 1;
+  background: var(--goth-dark-gray);
+  border: 1px solid var(--goth-border);
+  border-radius: var(--border-radius-main);
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.spotify-card {
+  background: var(--goth-card-gray);
+  border: 1px solid var(--goth-border);
+  border-radius: var(--border-radius-card);
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spotify-card:hover {
+  background: var(--goth-card-hover);
+  border-color: var(--goth-blood-bright);
+  transform: translateY(-4px);
+}
+
+.card-cover img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* PLAYER BAR INFERIOR */
+.player-bar {
+  height: var(--spotify-player-height);
+  background: var(--goth-black-void);
+  border-top: 1px solid var(--goth-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.player-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 25%;
+}
+
+.now-playing-meta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.track-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-size: 0.75rem;
+  color: var(--goth-silver-ghost);
+}
+
+.player-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 50%;
+}
+
+.controls-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-control {
+  background: transparent;
+  border: none;
+  color: var(--goth-silver-ghost);
+  cursor: pointer;
+}
+
+.btn-play-pause {
+  background: var(--goth-blood-bright);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.player-right {
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================================
+   RESPONSIVIDADE MOBILE (PWA / SMARTPHONES)
+   ========================================================== */
+@media (max-width: 768px) {
+  .spotify-layout {
+    height: 100vh;
+  }
+
+  .topbar {
+    padding: 8px 12px;
+  }
+
+  .user-actions .btn-install {
+    display: none; /* No mobile ele instala pelo próprio navegador */
+  }
+
+  .main-container {
+    flex-direction: column;
+    padding: 4px;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-height: 120px;
+    padding: 8px 12px;
+  }
+
+  .content-area {
+    padding: 12px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+
+  .player-bar {
+    padding: 0 8px;
+  }
+
+  .player-left {
+    width: 35%;
+  }
+
+  .player-center {
+    width: 60%;
+  }
+
+  .player-right {
+    display: none; /* Oculta controle de volume no mobile pois usa botões físicos do celular */
+  }
+}

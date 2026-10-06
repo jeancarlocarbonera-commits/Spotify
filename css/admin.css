@@ -1,0 +1,240 @@
+@import url('common.css');
+
+body {
+  padding: 24px;
+  background-image: radial-gradient(circle at 50% 0%, #2e0005 0%, var(--goth-black-void) 70%);
+}
+
+.admin-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--goth-border);
+  padding-bottom: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand h1 {
+  font-family: var(--font-gothic);
+  font-size: 1.4rem;
+  color: var(--goth-pure-white);
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary, .btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: var(--goth-blood-bright);
+  color: var(--goth-pure-white);
+  border: 1px solid var(--goth-blood-bright);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 15px var(--goth-crimson-glow);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--goth-card-gray);
+  color: var(--goth-silver-light);
+  border: 1px solid var(--goth-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--goth-blood-bright);
+  color: var(--goth-pure-white);
+}
+
+/* Tabela CRUD */
+.table-card {
+  background: var(--goth-dark-gray);
+  border: 1px solid var(--goth-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.music-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.music-table th {
+  background-color: var(--goth-card-gray);
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  color: var(--goth-silver-ghost);
+  border-bottom: 1px solid var(--goth-border);
+}
+
+.music-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #1a080a;
+  vertical-align: middle;
+}
+
+.table-cover {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--goth-border);
+}
+
+.action-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--goth-border);
+  color: var(--goth-silver-ghost);
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-edit:hover {
+  background-color: #0d47a1;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: var(--goth-blood-bright);
+  color: #fff;
+}
+
+/* Modal de Cadastro/Edição */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background: var(--goth-dark-gray);
+  border: 1px solid var(--goth-border);
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 0 30px rgba(122, 0, 0, 0.4);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--goth-border);
+  padding-bottom: 12px;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--goth-silver-ghost);
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  color: var(--goth-silver-ghost);
+}
+
+.form-group input {
+  background: var(--goth-card-gray);
+  border: 1px solid var(--goth-border);
+  padding: 10px;
+  border-radius: 6px;
+  color: #fff;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--goth-blood-bright);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Responsividade do Painel Admin */
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
+
+  .music-table {
+    min-width: 500px;
+  }
+}

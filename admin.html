@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify - Painel Administrativo</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="admin-container">
+    <header class="admin-header">
+      <div class="brand">
+        <i data-lucide="disc-3" class="logo-icon"></i>
+        <h1>Painel de Músicas (CRUD)</h1>
+      </div>
+      <div class="header-actions">
+        <!-- LINK CORRETO PARA RETORNAR AO PLAYER -->
+        <a href="index.html" class="btn-secondary">
+          <i data-lucide="external-link"></i> Abrir Player
+        </a>
+        <button class="btn-primary" id="btn-open-modal">
+          <i data-lucide="plus"></i> Adicionar música
+        </button>
+      </div>
+    </header>
+
+    <main class="table-card">
+      <table class="music-table">
+        <thead>
+          <tr>
+            <th>Capa</th>
+            <th>Título</th>
+            <th>Artista</th>
+            <th>Estilo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="music-table-body"></tbody>
+      </table>
+    </main>
+  </div>
+
+  <!-- MODAL DE CADASTRO -->
+  <div class="modal-overlay" id="music-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Adicionar Nova Música</h3>
+        <button class="close-btn" id="btn-close-modal"><i data-lucide="x"></i></button>
+      </div>
+      
+      <form id="music-form">
+        <input type="hidden" id="music-id">
+
+        <div class="form-group">
+          <label for="titulo">Título da Música</label>
+          <input type="text" id="titulo" placeholder="Ex: Blinding Lights" required>
+        </div>
+
+        <div class="form-group">
+          <label for="artista">Artista</label>
+          <input type="text" id="artista" placeholder="Ex: The Weeknd" required>
+        </div>
+
+        <div class="form-group">
+          <label for="estilo">Estilo / Gênero</label>
+          <input type="text" id="estilo" placeholder="Ex: Pop" required>
+        </div>
+
+        <div class="form-group">
+          <label for="capa-url">URL da Capa</label>
+          <input type="url" id="capa-url" placeholder="https://..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="audio-url">URL do Áudio (MP3)</label>
+          <input type="url" id="audio-url" placeholder="https://..." required>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="btn-cancel">Cancelar</button>
+          <button type="submit" class="btn-primary">Salvar no Firebase</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

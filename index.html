@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify - Web Player</title>
+  
+  <!-- Configurações PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7a0000">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Biblioteca de Ícones Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="spotify-layout">
+    
+    <!-- BARRA SUPERIOR (HEADER) -->
+    <header class="topbar">
+      <div class="brand">
+        <i data-lucide="disc-3" class="logo-icon"></i>
+      </div>
+
+      <div class="search-container">
+        <button class="nav-btn" title="Início">
+          <i data-lucide="home"></i>
+        </button>
+        <div class="search-bar">
+          <i data-lucide="search"></i>
+          <input type="text" id="search-input" placeholder="O que você quer ouvir?">
+        </div>
+      </div>
+
+      <div class="user-actions">
+        <a href="admin.html" class="badge">Painel Admin</a>
+        <button class="badge btn-install" id="btn-install-app">
+          <i data-lucide="arrow-down-to-line"></i> Instalar app
+        </button>
+        <button class="profile-avatar" title="Perfil">
+          <i data-lucide="user"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- ÁREA PRINCIPAL (SIDEBAR + CONTEÚDO) -->
+    <div class="main-container">
+      
+      <!-- Barra Lateral / Biblioteca -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title">
+            <i data-lucide="library"></i>
+            <span>Sua Biblioteca</span>
+          </div>
+        </div>
+        <div class="library-list" id="library-list">
+          <!-- As músicas do Firebase aparecem aqui -->
+        </div>
+      </aside>
+
+      <!-- Conteúdo Principal / Grid de Músicas -->
+      <main class="content-area">
+        <section class="section">
+          <div class="section-header">
+            <h2>Músicas e álbuns em alta</h2>
+          </div>
+          <div class="grid-container" id="grid-container"></div>
+        </section>
+      </main>
+
+    </div>
+
+    <!-- PLAYER DE ÁUDIO INFERIOR -->
+    <footer class="player-bar">
+      
+      <!-- Informações da Música -->
+      <div class="player-left">
+        <img id="player-cover" class="now-playing-cover" style="display: none; width: 50px; height: 50px; border-radius: 4px; object-fit: cover;" alt="Capa">
+        <div id="player-placeholder" class="now-playing-cover placeholder-bg" style="width: 50px; height: 50px; background: #222; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+          <i data-lucide="music"></i>
+        </div>
+        <div class="now-playing-meta">
+          <span class="track-title" id="player-title">Selecione uma música</span>
+          <span class="track-artist" id="player-artist">-</span>
+        </div>
+      </div>
+
+      <!-- Controles de Reprodução e Progresso -->
+      <div class="player-center">
+        <div class="controls-buttons">
+          <button class="btn-control" id="btn-prev" title="Anterior">
+            <i data-lucide="skip-back"></i>
+          </button>
+          <button class="btn-play-pause" id="btn-main-play" title="Reproduzir / Pausar">
+            <i data-lucide="play" id="play-icon"></i>
+          </button>
+          <button class="btn-control" id="btn-next" title="Próxima">
+            <i data-lucide="skip-forward"></i>
+          </button>
+        </div>
+
+        <div class="seek-bar-container" style="display: flex; align-items: center; gap: 8px; width: 100%; max-width: 500px;">
+          <span class="time-stamp" id="current-time" style="font-size: 0.75rem; color: #888;">0:00</span>
+          <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1" style="flex: 1; cursor: pointer; accent-color: var(--goth-blood, #e63946);">
+          <span class="time-stamp" id="total-duration" style="font-size: 0.75rem; color: #888;">0:00</span>
+        </div>
+      </div>
+
+      <!-- Controles Adicionais (Volume) -->
+      <div class="player-right" style="display: flex; align-items: center; gap: 8px;">
+        <i data-lucide="volume-2" style="color: #888; width: 18px;"></i>
+        <input type="range" id="volume-bar" value="100" min="0" max="100" style="width: 80px; cursor: pointer; accent-color: var(--goth-blood, #e63946);">
+      </div>
+
+    </footer>
+  </div>
+
+  <audio id="audio-element"></audio>
+
+  <script>
+    lucide.createIcons();
+
+    // Registro do Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log('Service Worker Registrado com sucesso!'))
+        .catch(err => console.error('Erro ao registrar Service Worker:', err));
+    }
+
+    // Instalação do PWA pelo Botão "Instalar App"
+    let deferredPrompt;
+    const installBtn = document.getElementById('btn-install-app');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) installBtn.style.display = 'inline-flex';
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+          }
+          deferredPrompt = null;
+        }
+      });
+    }
+  </script>
+
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

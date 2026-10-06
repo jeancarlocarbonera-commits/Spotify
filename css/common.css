@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap');
+
+:root {
+  --goth-blood: #7a0000;
+  --goth-blood-bright: #ad0000;
+  --goth-crimson-glow: #ff0015;
+  --goth-black-void: #030303;
+  --goth-dark-gray: #0b0b0d;
+  --goth-card-gray: #121215;
+  --goth-card-hover: #1c1c22;
+  --goth-border: #40050a;
+  --goth-silver-ghost: #888894;
+  --goth-silver-light: #d8d8e0;
+  --goth-pure-white: #ffffff;
+  
+  --font-gothic: 'Cinzel Decorative', 'Georgia', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --spotify-player-height: 72px;
+  --sidebar-width: 280px;
+  --border-radius-main: 12px;
+  --border-radius-card: 8px;
+  --border-radius-pill: 500px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  user-select: none;
+}
+
+body {
+  background-color: var(--goth-black-void);
+  color: var(--goth-silver-light);
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--goth-black-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a0006;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--goth-blood-bright);
+}
